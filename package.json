@@ -16,8 +16,10 @@
     "lib",
     "cordis.patch.yml",
     "icon.svg",
+    "docs",
     "README.md",
-    "README.en.md"
+    "README.zh.md",
+    "LICENSE"
   ],
   "keywords": [
     "dsh",
