@@ -23,7 +23,7 @@
 前提：一个正在运行的 DSH（桌面端，或 `dsh web`），以及一个 profile。下文以 `desktop` 为例；`$env:DSH_PROFILE` 会告诉你当前是哪个。
 
 ```powershell
-git clone https://github.com/<you>/dsh-confetti.git
+git clone https://github.com/LxHe1337/dsh-confetti.git
 dsh plugin --profile desktop add ./dsh-confetti
 ```
 

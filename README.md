@@ -23,7 +23,7 @@ A Web client plugin for DeepSeek Harness (DSH): a client-only effect, no Host se
 Prerequisites: a running DSH (the desktop app, or `dsh web`) and a profile. `desktop` is used below; `$env:DSH_PROFILE` tells you which profile this harness runs in.
 
 ```powershell
-git clone https://github.com/<you>/dsh-confetti.git
+git clone https://github.com/LxHe1337/dsh-confetti.git
 dsh plugin --profile desktop add ./dsh-confetti
 ```
 
