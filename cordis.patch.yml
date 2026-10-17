@@ -1,0 +1,7 @@
+# dsh-confetti bundle patch — inserts this plugin into a profile's layer stack.
+#
+# `dsh plugin add <path>` mounts this automatically; a hand-managed profile can
+# also put the same entry into its own cordis.patch.yml.
+- insert:
+    - id: dsh-confetti
+      name: 'dsh-confetti'

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="dsh-confetti">
+  <title>dsh-confetti</title>
+  <rect width="64" height="64" rx="14" fill="#121524" />
+  <g>
+    <rect x="15.5" y="21.5" width="5" height="9" rx="1.2" fill="#ffd166" transform="rotate(-26 18 26)" />
+    <rect x="26" y="14" width="4" height="8" rx="1" fill="#4cc9f0" transform="rotate(18 28 18)" />
+    <rect x="37.5" y="17" width="5" height="10" rx="1.2" fill="#ff477e" transform="rotate(-14 40 22)" />
+    <rect x="48" y="26" width="4" height="7" rx="1" fill="#06d6a0" transform="rotate(28 50 30)" />
+    <rect x="31" y="29.5" width="4" height="9" rx="1" fill="#b388ff" transform="rotate(38 33 34)" />
+    <rect x="20.5" y="36.5" width="3" height="7" rx="0.8" fill="#fff1b8" transform="rotate(-44 22 40)" />
+    <rect x="44" y="38" width="4" height="8" rx="1" fill="#f72585" transform="rotate(-30 46 42)" />
+    <rect x="11" y="45" width="2.2" height="11" rx="1.1" fill="#ff9f1c" transform="rotate(-52 12 50)" />
+    <rect x="51" y="46" width="2.2" height="11" rx="1.1" fill="#4cc9f0" transform="rotate(52 52 51)" />
+    <circle cx="10" cy="55" r="2" fill="#ffd166" />
+    <circle cx="55" cy="56" r="2" fill="#ff477e" />
+  </g>
+</svg>

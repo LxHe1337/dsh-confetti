@@ -1,0 +1,41 @@
+{
+  "name": "dsh-confetti",
+  "version": "0.2.0",
+  "private": true,
+  "description": "DSH confetti celebration — 每轮对话结束、或点一下输入框旁的按钮，窗口左右下角各喷一束彩带 · Party poppers in both bottom corners when a turn completes, or on demand from a composer button.",
+  "license": "MIT",
+  "type": "module",
+  "icon": "./icon.svg",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "README.en.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "confetti",
+    "celebration"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "platform": "web"
+    }
+  }
+}

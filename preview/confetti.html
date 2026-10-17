@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>dsh-confetti · 预览</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --ink: #f4f5fb;
+    --muted: #9aa3bd;
+    --card: rgba(21, 24, 38, 0.82);
+    --edge: rgba(255, 255, 255, 0.09);
+    --accent: #ffd166;
+    --accent-2: #ff477e;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font: 15px/1.6 "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
+    background: #0b0e18;
+    display: grid;
+    place-items: center;
+    padding: 32px 20px;
+    overflow: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(46% 40% at 12% 100%, rgba(255, 71, 126, 0.30), transparent 70%),
+      radial-gradient(46% 40% at 88% 100%, rgba(76, 201, 240, 0.28), transparent 70%),
+      radial-gradient(60% 50% at 50% 0%, rgba(179, 136, 255, 0.20), transparent 70%);
+    pointer-events: none;
+  }
+  .card {
+    position: relative;
+    width: min(640px, 100%);
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 24px;
+    padding: 30px 30px 26px;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+  h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: -0.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  p.lead { margin: 0 0 20px; color: var(--muted); }
+  .chat { display: grid; gap: 10px; margin: 0 0 22px; }
+  .bubble {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14px;
+    border: 1px solid var(--edge);
+  }
+  .bubble.user {
+    justify-self: end;
+    background: linear-gradient(135deg, rgba(255, 71, 126, 0.28), rgba(179, 136, 255, 0.24));
+    border-color: rgba(255, 71, 126, 0.35);
+  }
+  .bubble.agent { justify-self: start; background: rgba(255, 255, 255, 0.045); color: #dbe0f2; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  button {
+    font: inherit;
+    font-weight: 600;
+    color: #1a1207;
+    background: linear-gradient(135deg, #ffe08a, #ffb02e);
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 22px;
+    cursor: pointer;
+    box-shadow: 0 10px 26px rgba(255, 176, 46, 0.28);
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+  }
+  button:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(255, 176, 46, 0.36); }
+  button:active { transform: translateY(1px) scale(0.99); }
+  button.ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--edge);
+    box-shadow: none;
+    font-weight: 500;
+  }
+  button.ghost:hover { color: var(--ink); border-color: rgba(255, 255, 255, 0.22); }
+  .hint { margin: 18px 0 0; font-size: 12.5px; color: #7b849e; }
+  .hint code {
+    font-family: ui-monospace, Consolas, "Courier New", monospace;
+    font-size: 12px;
+    padding: 1px 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #cfd6ea;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <span class="eyebrow"><span class="dot"></span>dsh-confetti · preview</span>
+    <h1>对话完成，<em>左右下角</em>各喷一束彩带</h1>
+    <p class="lead">这条页面加载的就是插件本体 <code>lib/client.js</code>，只为它准备了一个最小的模块加载器替身，所以这里看到的效果和装进 DSH 之后完全一致。</p>
+
+    <div class="chat">
+      <div class="bubble user">帮我把这版文案改得更有节日感。</div>
+      <div class="bubble agent">改好了：三处动词换了，标题更轻快，结尾多了一句祝福。要我再来一版更夸张的吗？</div>
+    </div>
+
+    <div class="row">
+      <button id="fire" type="button">完成一次对话 ✨</button>
+      <button id="burst" class="ghost" type="button">连喷三次</button>
+    </div>
+
+    <p class="hint">
+      装进 DSH 后无需点击：某个会话的 <code>sessions.list</code> 里 <code>running</code> 从 true 翻成 false，就自动喷一次。
+      在真实页面里也可以随时手动触发：<code>__dshConfetti.fire()</code>。
+    </p>
+  </main>
+
+  <script>
+    // Minimal stand-in for the DSH Client module loader: it runs the factory
+    // and hands back the module the bundle returns. No external module exists
+    // here, so `require` throws if the bundle ever starts depending on one.
+    window.__ModuleLoader__ = {
+      load: function (entry) {
+        try {
+          window.__dshConfettiBundle = entry.factory(function (id) {
+            throw new Error('preview: no external module "' + id + '"')
+          })
+        } catch (error) {
+          console.error('[dsh-confetti preview] bundle failed:', error)
+        }
+      }
+    }
+  </script>
+  <script src="../lib/client.js"></script>
+  <script>
+    (function () {
+      var api = window.__dshConfetti
+      var fire = document.getElementById('fire')
+      var burst = document.getElementById('burst')
+
+      function shoot(options) {
+        if (api && typeof api.fire === 'function') {
+          api.fire(options)
+          return
+        }
+        console.warn('[dsh-confetti preview] the bundle did not register __dshConfetti')
+      }
+
+      fire.addEventListener('click', function () { shoot() })
+      burst.addEventListener('click', function () {
+        shoot()
+        setTimeout(function () { shoot() }, 260)
+        setTimeout(function () { shoot() }, 520)
+      })
+
+      // Land the page with the effect already in flight.
+      setTimeout(function () { shoot() }, 420)
+    })()
+  </script>
+</body>
+</html>
